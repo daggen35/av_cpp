@@ -1,0 +1,32 @@
+/*
+ * smart_pointer.h     Smart pointer I, Given code.
+ */
+#ifndef SMARTPOINTER_I_H
+#define SMARTPOINTER_I_H
+
+namespace IDA_Smart_Pointer_I
+{
+
+   class smart_pointer{
+      public:
+         explicit smart_pointer(int* p = 0);
+
+         smart_pointer(const smart_pointer& rhs);
+
+         ~smart_pointer();
+
+         smart_pointer& operator=(const smart_pointer& rhs);
+
+         int& operator*() const;//lade till const
+
+         int* operator->();
+
+   private:
+      int* ptr_;
+
+      void copy(const smart_pointer& p);
+   };
+
+} // namespace IDA_Smart_Pointer_I
+
+#endif
