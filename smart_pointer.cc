@@ -20,16 +20,24 @@ namespace IDA_Smart_Pointer_I{
   }
   
   int& smart_pointer::operator*() const{//returna inten vi pekar på, lade till const för att kunna anropa
-    return *(this->ptr_);//om ptr är null då?? TODO
+    if(this->ptr_==0){//TODO fatta: används våran op-> eller en standard? borde kunna använda våran? typ (*this)-> borde ge ptr_
+		//kasta exception??  TODO
+		throw 1;
+	}
+	return *(this->ptr_);
   }
 
-  int* smart_pointer::operator->(){//
+  int* smart_pointer::operator->(){//TODO fatta detta varför det inte är nå argument
     return this->ptr_;
   }
 
   void smart_pointer::copy(const smart_pointer& p){//djup kopiering
-    int orginal = *p;//klassens operator*().  p kan vara en tompekare..
-    this->ptr_= new int(orginal);//om p inte är tompekare TODO:if 
+	if(p.ptr_==0){
+		this->ptr_=0;
+	}else{
+		int orginal = *p;//klassens operator*().  p kan vara en tompekare.. ha try-cath så slipper vi iffen
+		this->ptr_= new int(orginal);
+		}
   }
 
   
@@ -41,6 +49,7 @@ int main(){
   int* x = new int(37);
   IDA_Smart_Pointer_I::smart_pointer pek1(x);
   delete x;
-  
+  fprintf(stderr,"lol");
+  printf(" apa");
   return 0;
 }
