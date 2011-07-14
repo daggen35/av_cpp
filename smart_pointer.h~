@@ -17,13 +17,9 @@ namespace IDA_Smart_Pointer_I
     
     smart_pointer& operator=(const smart_pointer& rhs);
 
-    smart_pointer& operator=(int*);
-
     int& operator*() const;//lade till const
     
     int* operator->() const;//lade till const
-
-    void swap(smart_pointer&);
     
   private:
     int* ptr_;

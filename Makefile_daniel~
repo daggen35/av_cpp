@@ -1,0 +1,16 @@
+CC = g++
+CFLAGS = -Wall -Wextra -pedantic
+
+all: smart_pointer-test
+
+smart_pointer-test: smart_pointer-test.o
+		    $(CC) $(CFLAGS) -o danielgjord smart_pointer-test.o
+
+smart_pointer-test.o: smart_pointer.o smart_pointer-test.cc
+		    $(CC) $(CFLAGS) -c smart_pointer-test.cc
+
+smart_pointer.o:
+	$(CC) $(CFLAGS) -c smart_pointer.cc
+
+clean:
+	rm -f *.o
