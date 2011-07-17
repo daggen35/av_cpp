@@ -14,9 +14,9 @@ int main()
 {
   cout << "Default constructor initializes to null pointer:\n";
   cout << "smart_pointer sp0;\n\n";
-  smart_pointer sp0();
-  //cout <<"\nny\n";
-  //smart_pointer apa();//lägg till private default åsså funkar ej heller
+  smart_pointer sp0;
+  cout <<"ny\n";
+  smart_pointer apa();
 
    // Trick to check the value of the raw pointer.
    cout << "Using operator-> with ordinary member function call syntax\n";

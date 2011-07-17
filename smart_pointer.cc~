@@ -1,5 +1,6 @@
 #include "smart_pointer.h"
 #include <stdio.h>
+#include <algorithm>
 //using namespace IDA_Smart_Pointer_I;
 
 namespace IDA_Smart_Pointer_I{
@@ -13,26 +14,33 @@ namespace IDA_Smart_Pointer_I{
   }
 
   smart_pointer::~smart_pointer(){
-    delete ptr_;
+    delete ptr_;//delete is nullpointer safe!
   }
   
-  smart_pointer& smart_pointer::operator=(const smart_pointer& rhs){
-    copy(rhs);
+  smart_pointer& smart_pointer::operator=(const smart_pointer& rhs){//exception safe because of swap
+    smart_pointer temp(rhs);
+    (*this).swap(temp);
+    return *this;
+  }
+
+  smart_pointer& smart_pointer::operator=(int* rhs){
+    smart_pointer temp(rhs);
+    (*this).swap(temp);
     return *this;
   }
   
   int& smart_pointer::operator*() const{//returna inten vi pekar på, lade till const för att kunna anropa
     printf("operator*\n");
-    if((*this).operator->()==0){//TODO: snyggare syntax??
+    if(ptr_==0){
       fprintf(stderr, "kastar skit från op*");
       throw 1;
     }
-    return *(this->ptr_);
+    return *ptr_;
   }
   
   int* smart_pointer::operator->() const{//TODO fatta detta varför det inte är nå argument
     printf("operator->\n");
-    return this->ptr_;
+    return ptr_;
   }
 
   void smart_pointer::copy(const smart_pointer& p){//djup kopiering
@@ -44,7 +52,10 @@ namespace IDA_Smart_Pointer_I{
     }
   }
 
-  
+  void smart_pointer::swap(smart_pointer& p)// throw()
+  {
+    std::swap(ptr_,p.ptr_);
+  }
 }
 /*
 int main(){

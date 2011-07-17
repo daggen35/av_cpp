@@ -23,9 +23,20 @@ namespace IDA_Smart_Pointer_I
     
     int* operator->() const;//lade till const
 
+    bool operator!()const;
+
+    bool operator==(const smart_pointer&) const;
+
+    bool operator==(const int*) const;
+
+    bool operator!=(const smart_pointer&) const;
+
+    bool operator!=(const int*) const;
+
     void swap(smart_pointer&);
     
   private:
+
     int* ptr_;
     
     void copy(const smart_pointer& p);

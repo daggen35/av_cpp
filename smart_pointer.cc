@@ -5,7 +5,7 @@
 
 namespace IDA_Smart_Pointer_I{
   smart_pointer::smart_pointer(int* p): ptr_(p){//defaultparam sätts i headern, TODO: vill vi bara kopiera pekaren? det gör vi nu + default funkar ej
-    //printf("skapar en smartpointer");
+    printf("skapar en smartpointer");
   }
   
 
